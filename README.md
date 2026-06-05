@@ -1,18 +1,12 @@
-# market
-GitHub. Just paste it directly into your repo — no download needed.
-
-My bad for presenting it as a file to download. Here it is plain:
-
----
-
 # 📈 Nigeria Market Price Tracker
 
 A real-time commodity price tracker built for Nigerian farmers, traders, and students. Enter prices from your local market — everyone else sees them instantly.
 
 ---
-
+## 🔗 Live App
+[Click here to use the app](https://farm-expense-tracker.streamlit.app/)
 ## 🌍 What It Does
-
+---
 - Farmers and traders enter commodity prices from their market
 - Prices save permanently to a cloud database (Google Sheets)
 - Anyone who opens the app sees the latest prices — no market visit needed
