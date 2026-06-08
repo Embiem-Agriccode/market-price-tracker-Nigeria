@@ -83,14 +83,14 @@ if not df.empty:
     st.divider()
     st.subheader("📈 Price Trend")
 
-    selected = st.selectbox("Select commodity to view trend", df["Commodity"].unique())
-    filtered = df[df["Commodity"] == selected]
-
+    selected = st.multiselect("Select commodities to compare", df["Commodity"].unique(), default=[df["Commodity"].unique()[0]])
+    filtered = df[df["Commodity"].isin(selected)]
     
     fig = px.line(filtered, x="Date", y="Price (₦/kg)", 
                 title=f"{selected} Price Trend",
                 markers=True,
-                color_discrete_sequence=["#FF6B35"])
+                color="Commodity",
+                hover_data={"Location": True, "Price (₦/kg)": True, "Date": True})
     fig.update_layout(hovermode="x unified")
     st.plotly_chart(fig, use_container_width=True)
 else:
