@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import date
@@ -79,13 +79,12 @@ if not df.empty:
     selected = st.selectbox("Select commodity to view trend", df["Commodity"].unique())
     filtered = df[df["Commodity"] == selected]
 
-    fig, ax = plt.subplots(figsize=(10, 4))
-    ax.plot(filtered["Date"], filtered["Price (₦/kg)"], marker="o", color="#FF6B35")
-    ax.set_title(f"{selected} Price Trend")
-    ax.set_xlabel("Date")
-    ax.set_ylabel("Price (₦/kg)")
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-    st.pyplot(fig)
+    
+    fig = px.line(filtered, x="Date", y="Price (₦/kg)", 
+                title=f"{selected} Price Trend",
+                markers=True,
+                color_discrete_sequence=["#FF6B35"])
+    fig.update_layout(hovermode="x unified")
+    st.plotly_chart(fig, use_container_width=True)
 else:
     st.info("No data yet. Add your first price above!")
