@@ -4,7 +4,7 @@ A real-time commodity price tracker built for Nigerian farmers, traders, and stu
 
 ---
 ## 🔗 Live App
-[Click here to use the app](https://farm-expense-tracker.streamlit.app/)
+[Click here to use the app](https://market-price-tracker-nigeria.streamlit.app/)
 ## 🌍 What It Does
 ---
 - Farmers and traders enter commodity prices from their market
