@@ -68,7 +68,23 @@ if st.button("➕ Add Price"):
 # ===== SHOW DATA =====
 st.divider()
 df = load_data()
-
+if not df.empty:
+    st.divider()
+    st.subheader("📊 Market Summary")
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        most_expensive = df.loc[df["Price (₦/kg)"].idxmax()]
+        st.metric("💰 Most Expensive", most_expensive["Commodity"], f"₦{most_expensive['Price (₦/kg)']}/kg")
+    
+    with col2:
+        cheapest = df.loc[df["Price (₦/kg)"].idxmin()]
+        st.metric("🟢 Cheapest Right Now", cheapest["Commodity"], f"₦{cheapest['Price (₦/kg)']}/kg")
+    
+    with col3:
+        most_active = df["Location"].value_counts().idxmax()
+        st.metric("📍 Most Active Market", most_active, f"{df['Location'].value_counts().max()} entries")
 if not df.empty:
     st.subheader("📊 Price Records")
     st.dataframe(df, use_container_width=True)
