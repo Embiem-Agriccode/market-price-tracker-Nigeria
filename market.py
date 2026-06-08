@@ -74,6 +74,13 @@ if not df.empty:
     st.dataframe(df, use_container_width=True)
 
     st.divider()
+    st.subheader("🏷️ Latest Prices")
+
+    latest = df.sort_values("Date", ascending=False).drop_duplicates(subset=["Commodity", "Location"])
+    latest = latest.sort_values("Commodity")
+    st.dataframe(latest[["Commodity", "Location", "Price (₦/kg)", "Date"]], use_container_width=True)
+
+    st.divider()
     st.subheader("📈 Price Trend")
 
     selected = st.selectbox("Select commodity to view trend", df["Commodity"].unique())
